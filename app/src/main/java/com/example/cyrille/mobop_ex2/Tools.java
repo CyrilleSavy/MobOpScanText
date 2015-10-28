@@ -11,7 +11,7 @@ import android.hardware.Camera;
  */
 public class Tools {
     public static Bitmap getFocusedBitmap(Context context, Camera camera, byte[] data, Rect box) {
-        Point CamRes = FocusBoxUtils.getCameraResolution(context, camera);
+        Point CamRes = null;//TODO FocusBoxUtils.getCameraResolution(context, camera);
         Point ScrRes = FocusBoxUtils.getScreenResolution(context);
 
         int SW = ScrRes.x; //SCREEN WIDTH - HEIGHT
@@ -39,12 +39,12 @@ public class Tools {
         //SCALING WITH SONY TOOLS
         // http://developer.sonymobile.com/2011/06/27/how-to-scale-images-for-your-android-application/
 
-        Bitmap unscaledBitmap = Tools.decodeByteArray(data, X, Y, Tools.ScalingLogic.CROP);
-        Bitmap bmp = Tools.createScaledBitmap(unscaledBitmap, X, Y, Tools.ScalingLogic.CROP);
+        Bitmap unscaledBitmap = null;//TODO Tools.decodeByteArray(data, X, Y, Tools.ScalingLogic.CROP);
+        Bitmap bmp = null;//TODO Tools.createScaledBitmap(unscaledBitmap, X, Y, Tools.ScalingLogic.CROP);
         unscaledBitmap.recycle();
 
         if (CW > CH)
-            bmp = Tools.rotateBitmap(bmp, 90);
+            bmp = null;//TODO Tools.rotateBitmap(bmp, 90);
 
         int BW = bmp.getWidth();   //NEW FULL CAPTURED BITMAP DIMENSIONS
         int BH = bmp.getHeight();

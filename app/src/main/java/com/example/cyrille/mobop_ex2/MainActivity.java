@@ -118,7 +118,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback, Vi
 
         Log.d(TAG, "Got bitmap");
 
-        new TessAsyncEngine().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, this, bmp);
+        //TODO new TessAsyncEngine().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, this, bmp);
 
     }
 
