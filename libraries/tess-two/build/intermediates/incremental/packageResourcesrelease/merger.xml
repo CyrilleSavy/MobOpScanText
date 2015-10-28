@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/cyrille/AndroidStudioProjects/MobOp_Ex2/libraries/tess-two/res"/><source path="/home/cyrille/AndroidStudioProjects/MobOp_Ex2/libraries/tess-two/build/generated/res/rs/release"/><source path="/home/cyrille/AndroidStudioProjects/MobOp_Ex2/libraries/tess-two/build/generated/res/resValues/release"/></dataSet><dataSet config="release"><source path="/home/cyrille/AndroidStudioProjects/MobOp_Ex2/libraries/tess-two/src/release/res"/></dataSet><mergedItems/></merger>
