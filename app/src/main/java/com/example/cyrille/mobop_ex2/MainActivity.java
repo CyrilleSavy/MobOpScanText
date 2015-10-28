@@ -107,7 +107,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback, Vi
     @Override
     public void onPictureTaken(byte[] data, Camera camera) {
 
-        Log.d(TAG, "Picture taken");
+        Log.d(TAG, "A Picture taken");
 
         if (data == null) {
             Log.d(TAG, "Got null data");
