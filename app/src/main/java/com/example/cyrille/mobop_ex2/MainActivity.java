@@ -17,8 +17,8 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback, Vi
     static final String TAG = "DBG_" + MainActivity.class.getName();
 
     Button shutterButton;
-    Button focusButton;
-    FocusBoxView focusBox;
+    /*Button focusButton;
+    FocusBoxView focusBox;*/
     SurfaceView cameraFrame;
     CameraEngine cameraEngine;
 
@@ -26,6 +26,8 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback, Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.d(TAG, "setContentView OK");
     }
 
     @Override
@@ -62,19 +64,19 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback, Vi
     protected void onResume() {
         super.onResume();
 
-        cameraFrame = (SurfaceView) findViewById(R.id.camera_frame);
-        shutterButton = (Button) findViewById(R.id.shutter_button);
-        focusBox = (FocusBoxView) findViewById(R.id.focus_box);
-        focusButton = (Button) findViewById(R.id.focus_button);
-
+        cameraFrame = (SurfaceView) findViewById(R.id.cameraframe);
+        shutterButton = (Button) findViewById(R.id.shutterbutton);
+//        focusBox = (FocusBoxView) findViewById(R.id.focus_box);
+//        focusButton = (Button) findViewById(R.id.focus_button);
+//
         shutterButton.setOnClickListener(this);
-        focusButton.setOnClickListener(this);
+//        focusButton.setOnClickListener(this);
 
         SurfaceHolder surfaceHolder = cameraFrame.getHolder();
         surfaceHolder.addCallback(this);
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-
-        cameraFrame.setOnClickListener(this);
+//
+//        cameraFrame.setOnClickListener(this);
     }
 
     @Override
@@ -94,14 +96,15 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback, Vi
         if (v == shutterButton) {
             if (cameraEngine != null && cameraEngine.isOn()) {
                 cameraEngine.takeShot(this, this, this);
+                Log.d(TAG, "ShutterButton clicked");
             }
         }
-
-        if (v == focusButton) {
-            if (cameraEngine != null && cameraEngine.isOn()) {
-                cameraEngine.requestFocus();
-            }
-        }
+//
+//        if (v == focusButton) {
+//            if (cameraEngine != null && cameraEngine.isOn()) {
+//                cameraEngine.requestFocus();
+//            }
+//        }
     }
 
     @Override
@@ -114,11 +117,11 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback, Vi
             return;
         }
 
-        Bitmap bmp = Tools.getFocusedBitmap(this, camera, data, focusBox.getBox());
+//        Bitmap bmp = Tools.getFocusedBitmap(this, camera, data, focusBox.getBox());
 
         Log.d(TAG, "Got bitmap");
 
-        //TODO new TessAsyncEngine().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, this, bmp);
+        //new TessAsyncEngine().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, this, bmp);
 
     }
 
