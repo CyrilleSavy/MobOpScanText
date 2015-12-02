@@ -14,28 +14,37 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
     <Button
-        android:id="@+id/shutterbutton"
+        android:id="@+id/shutterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="48dp"
-        android:text="Shutter Button" />
+        android:layout_alignParentTop="true"
+        android:text="Take a photo" />
 
     <SurfaceView
+        android:id="@+id/cameraframe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/cameraframe"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/shutterbutton"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/shutterButton" />
+
+    <Button
+        android:id="@+id/focusButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/cameraframe"
+        android:layout_toEndOf="@+id/shutterButton"
+        android:text="Focus" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/cameraframe"
+        android:layout_toEndOf="@+id/focusButton"
+        android:text="Back" />
 
 </RelativeLayout>
