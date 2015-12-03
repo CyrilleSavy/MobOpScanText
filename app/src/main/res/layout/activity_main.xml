@@ -14,37 +14,67 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/shutterButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="Take a photo" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
-    <SurfaceView
-        android:id="@+id/cameraframe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/shutterButton" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            >
 
-    <Button
-        android:id="@+id/focusButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/cameraframe"
-        android:layout_toEndOf="@+id/shutterButton"
-        android:text="Focus" />
+            <Button
+                android:id="@+id/shutterButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="Take photo"
+                android:layout_weight="0.2"/>
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/cameraframe"
-        android:layout_toEndOf="@+id/focusButton"
-        android:text="Back" />
+            <Button
+                android:id="@+id/focusButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/cameraframe"
+                android:layout_toEndOf="@+id/shutterButton"
+                android:text="Focus"
+                android:layout_weight="0.2"/>
+
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/cameraframe"
+                android:layout_toEndOf="@+id/focusButton"
+                android:text="Back"
+                android:layout_weight="0.2"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            >
+
+            <SurfaceView
+                android:id="@+id/cameraframe"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="center"/>
+
+            <com.example.cyrille.mobop_ex2.FocusBoxView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/focusBox"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center"/>
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

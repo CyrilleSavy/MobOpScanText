@@ -2,6 +2,7 @@ package com.example.cyrille.mobop_ex2;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Point;
 import android.hardware.Camera;
 
 /**
@@ -33,14 +34,6 @@ public class CameraUtils
     //Get available camera
     public static Camera getCamera()
         {
-//        try
-//            {
-//            return Camera.open();
-//            } catch (Exception e)
-//            {
-//            Log.e(TAG, "Cannot getCamera()");
-//            return null;
-//            }
         int numberOfCameras = Camera.getNumberOfCameras();
         Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
         for (int i = 0; i < numberOfCameras; i++)
@@ -53,5 +46,14 @@ public class CameraUtils
                 }
             }
         return null;
+        }
+
+    //Get available camera
+    public static Point getCameraResolution(Context context, Camera camera)
+        {
+        Camera.Parameters parameters = camera.getParameters();
+        Camera.Size size = parameters.getPictureSize();
+
+        return new Point(size.width, size.height);
         }
     }

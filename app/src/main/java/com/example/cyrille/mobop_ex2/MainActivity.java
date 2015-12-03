@@ -1,10 +1,10 @@
 package com.example.cyrille.mobop_ex2;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -18,7 +18,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback, Vi
 
     Button shutterButton;
     Button focusButton;
-    /*FocusBoxView focusBox;*/
+    FocusBoxView focusBox;
     SurfaceView cameraFrame;
     CameraEngine cameraEngine;
 
@@ -73,7 +73,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback, Vi
 
         cameraFrame = (SurfaceView) findViewById(R.id.cameraframe);
         shutterButton = (Button) findViewById(R.id.shutterButton);
-//        focusBox = (FocusBoxView) findViewById(R.id.focus_box);
+        focusBox = (FocusBoxView) findViewById(R.id.focus_box);
         focusButton = (Button) findViewById(R.id.focusButton);
 
         shutterButton.setOnClickListener(this);
@@ -133,7 +133,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback, Vi
             return;
             }
 
-//        Bitmap bmp = Tools.getFocusedBitmap(this, camera, data, focusBox.getBox());
+        Bitmap bmp = Tools.getFocusedBitmap(this, camera, data, focusBox.getBox());
 
         Log.d(TAG, "Got bitmap");
 

@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 
-    <engenoid.tessocrdtest.Core.ExtraViews.FocusBoxView
+    <com.example.cyrille.mobop_ex2.FocusBoxView
         android:id="@+id/focus_box"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
