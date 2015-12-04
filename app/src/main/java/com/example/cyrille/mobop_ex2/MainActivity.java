@@ -3,6 +3,7 @@ package com.example.cyrille.mobop_ex2;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.hardware.Camera;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -73,7 +74,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback, Vi
 
         cameraFrame = (SurfaceView) findViewById(R.id.cameraframe);
         shutterButton = (Button) findViewById(R.id.shutterButton);
-        focusBox = (FocusBoxView) findViewById(R.id.focus_box);
+        focusBox = (FocusBoxView) findViewById(R.id.focusBox);
         focusButton = (Button) findViewById(R.id.focusButton);
 
         shutterButton.setOnClickListener(this);
@@ -137,7 +138,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback, Vi
 
         Log.d(TAG, "Got bitmap");
 
-        //new TessAsyncEngine().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, this, bmp);
+        new TessAsyncEngine().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, this, bmp);
 
         }
 
