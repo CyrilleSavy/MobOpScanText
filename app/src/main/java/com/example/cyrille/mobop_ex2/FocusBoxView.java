@@ -47,29 +47,13 @@ public class FocusBoxView extends View
         {
         if (box == null)
             {
-//            ScrRes = FocusBoxUtils.getScreenResolution(getContext());
             ScrRes = new Point(this.getWidth(), this.getHeight());
 
-//            int width = ScrRes.x * 6 / 7;
-//            int height = ScrRes.y / 9;
-
-
             int width = this.getWidth() * 6 / 7;//- 2 * MIN_FOCUS_BOX_MARGIN;
-            int height = this.getHeight() / 9;//- 2 * MIN_FOCUS_BOX_MARGIN;
-
-//            width = width == 0
-//                    ? MIN_FOCUS_BOX_WIDTH
-//                    : width < MIN_FOCUS_BOX_WIDTH ? MIN_FOCUS_BOX_WIDTH : width;
-//
-//            height = height == 0
-//                    ? MIN_FOCUS_BOX_HEIGHT
-//                    : height < MIN_FOCUS_BOX_HEIGHT ? MIN_FOCUS_BOX_HEIGHT : height;
+            int height = this.getHeight() * 2 / 9;//- 2 * MIN_FOCUS_BOX_MARGIN;
 
             int left = (ScrRes.x - width) / 2;
             int top = (ScrRes.y - height) / 2;
-
-//            int left = MIN_FOCUS_BOX_MARGIN;
-//            int top = MIN_FOCUS_BOX_MARGIN;
 
             box = new Rect(left, top, left + width, top + height);
             }
@@ -89,30 +73,26 @@ public class FocusBoxView extends View
 
     private void updateBoxRect(int dW, int dH, FocusBoxSide side)
         {
-        int newWidth = ((side == FocusBoxSide.LEFT) || (side == FocusBoxSide.BOTTOM_LEFT) || (side == FocusBoxSide.TOP_LEFT)) ? (box.width() - dW) : (box.width() + dW);
-        newWidth = (newWidth >= ScrRes.x - 2 * MIN_FOCUS_BOX_MARGIN)
-                ? (ScrRes.x - 2 * MIN_FOCUS_BOX_MARGIN)
-                : (newWidth <= MIN_FOCUS_BOX_WIDTH) ? MIN_FOCUS_BOX_WIDTH : (newWidth);
+        int newWidth = (box.width() + dW);
+        int newHeight = (box.height() + dH);
 
-        int newHeight = ((side == FocusBoxSide.TOP) || (side == FocusBoxSide.TOP_LEFT) || (side == FocusBoxSide.TOP_RIGHT)) ? (box.height() - dH) : (box.height() + dH);
-        newHeight = (newHeight >= ScrRes.y - 2 * MIN_FOCUS_BOX_MARGIN)
-                ? (ScrRes.y - 2 * MIN_FOCUS_BOX_MARGIN)
-                : (newHeight <= MIN_FOCUS_BOX_HEIGHT) ? MIN_FOCUS_BOX_HEIGHT : (newHeight);
+        int leftOffset = ((side == FocusBoxSide.LEFT) || (side == FocusBoxSide.TOP_LEFT) || (side == FocusBoxSide.BOTTOM_LEFT))
+                ? (newWidth <= MIN_FOCUS_BOX_WIDTH) ? (box.right - MIN_FOCUS_BOX_WIDTH) : (box.left - dW) : box.left;
+        leftOffset = (leftOffset < MIN_FOCUS_BOX_MARGIN) ? MIN_FOCUS_BOX_MARGIN : leftOffset;
 
-        int leftOffset = ((side == FocusBoxSide.LEFT) || (side == FocusBoxSide.TOP_LEFT) || (side == FocusBoxSide.BOTTOM_LEFT)) ? (newWidth <= MIN_FOCUS_BOX_WIDTH) ? box.left : (box.left - dW) : box.left;
+        int rightOffset = ((side == FocusBoxSide.RIGHT) || (side == FocusBoxSide.TOP_RIGHT) || (side == FocusBoxSide.BOTTOM_RIGHT))
+                ? (newWidth <= MIN_FOCUS_BOX_WIDTH) ? (box.left + MIN_FOCUS_BOX_WIDTH) : (box.right + dW) : box.right;
+        rightOffset = (rightOffset > (ScrRes.x - MIN_FOCUS_BOX_MARGIN)) ? (ScrRes.x - MIN_FOCUS_BOX_MARGIN) : rightOffset;
 
-        int rightOffset = ((side == FocusBoxSide.RIGHT) || (side == FocusBoxSide.TOP_RIGHT) || (side == FocusBoxSide.BOTTOM_RIGHT)) ? (newWidth <= MIN_FOCUS_BOX_WIDTH) ? box.right : (box.right + dW) : box.right;
+        int topOffset = ((side == FocusBoxSide.TOP) || (side == FocusBoxSide.TOP_LEFT) || (side == FocusBoxSide.TOP_RIGHT))
+                ? (newHeight <= MIN_FOCUS_BOX_HEIGHT) ? (box.bottom - MIN_FOCUS_BOX_HEIGHT) : (box.top - dH) : box.top;
+        topOffset = (topOffset < MIN_FOCUS_BOX_MARGIN) ? MIN_FOCUS_BOX_MARGIN : topOffset;
 
-        int topOffset = ((side == FocusBoxSide.TOP) || (side == FocusBoxSide.TOP_LEFT) || (side == FocusBoxSide.TOP_RIGHT)) ? (newHeight <= MIN_FOCUS_BOX_HEIGHT) ? box.top : (box.top - dH) : box.top;
+        int bottomOffset = ((side == FocusBoxSide.BOTTOM) || (side == FocusBoxSide.BOTTOM_LEFT) || (side == FocusBoxSide.BOTTOM_RIGHT))
+                ? (newHeight <= MIN_FOCUS_BOX_HEIGHT) ? (box.top + MIN_FOCUS_BOX_HEIGHT) : (box.bottom + dH) : box.bottom;
+        bottomOffset = (bottomOffset > (ScrRes.y - MIN_FOCUS_BOX_MARGIN)) ? (ScrRes.y - MIN_FOCUS_BOX_MARGIN) : bottomOffset;
 
-        int bottomOffset = ((side == FocusBoxSide.BOTTOM) || (side == FocusBoxSide.BOTTOM_LEFT) || (side == FocusBoxSide.BOTTOM_RIGHT)) ? (newHeight <= MIN_FOCUS_BOX_HEIGHT) ? box.bottom : (box.bottom + dH) : box.bottom;
-
-//        if (newWidth < MIN_FOCUS_BOX_WIDTH || newHeight < MIN_FOCUS_BOX_HEIGHT)
-//            return;
-
-        //box = new Rect(leftOffset, topOffset, leftOffset + newWidth, topOffset + newHeight);
-
-        box = new Rect(leftOffset, topOffset, rightOffset, bottomOffset);
+        box.set(leftOffset, topOffset, rightOffset, bottomOffset);
         }
 
     private OnTouchListener touchListener;
