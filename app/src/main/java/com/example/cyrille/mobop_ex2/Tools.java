@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.hardware.Camera;
+import android.view.View;
 
 /**
  * Created by Fadi on 5/11/2014.
@@ -178,7 +179,6 @@ public class Tools
     public static Bitmap createScaledBitmap(Bitmap unscaledBitmap, int dstWidth, int dstHeight,
                                             ScalingLogic scalingLogic)
         {
-
         Rect srcRect = calculateSrcRect(unscaledBitmap.getWidth(), unscaledBitmap.getHeight(),
                 dstWidth, dstHeight, scalingLogic);
         Rect dstRect = calculateDstRect(unscaledBitmap.getWidth(), unscaledBitmap.getHeight(),
@@ -189,12 +189,10 @@ public class Tools
         canvas.drawBitmap(unscaledBitmap, srcRect, dstRect, new Paint(Paint.FILTER_BITMAP_FLAG));
 
         return scaledBitmap;
-
         }
 
     public static Bitmap getFocusedBitmap(Context context, Camera camera, byte[] data, Rect box)
         {
-
         Point CamRes = FocusBoxUtils.getCameraResolution(context, camera);
         Point ScrRes = FocusBoxUtils.getScreenResolution(context);
 
@@ -240,7 +238,51 @@ public class Tools
         bmp.recycle();
 
         return res;
+        }
 
+    public static Bitmap getFocusedBitmap(Bitmap bmpIn, View view, Rect box)
+        {
+        int SW = view.getWidth();
+        int SH = view.getHeight();
+
+        int RW = box.width();
+        int RH = box.height();
+        int RL = box.left;
+        int RT = box.top;
+
+        float RSW = (float) (RW * Math.pow(SW, -1));
+        float RSH = (float) (RH * Math.pow(SH, -1));
+
+        float RSL = (float) (RL * Math.pow(SW, -1));
+        float RST = (float) (RT * Math.pow(SH, -1));
+
+        float k = 0.5f;
+
+        int CW = bmpIn.getWidth();
+        int CH = bmpIn.getHeight();
+
+        int X = (int) (k * CW);
+        int Y = (int) (k * CH);
+
+        //Bitmap unscaledBitmap = Tools.decodeByteArray(data, X, Y, Tools.ScalingLogic.CROP);
+        Bitmap bmp = Tools.createScaledBitmap(bmpIn, X, Y, Tools.ScalingLogic.CROP);
+
+        if (CW > CH)
+            bmp = Tools.rotateBitmap(bmp, 90);
+
+        int BW = bmp.getWidth();
+        int BH = bmp.getHeight();
+
+        int RBL = (int) (RSL * BW);
+        int RBT = (int) (RST * BH);
+
+        int RBW = (int) (RSW * BW);
+        int RBH = (int) (RSH * BH);
+
+        Bitmap res = Bitmap.createBitmap(bmp, RBL, RBT, RBW, RBH);
+        bmp.recycle();
+
+        return res;
         }
 
     }

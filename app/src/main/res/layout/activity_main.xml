@@ -17,55 +17,38 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="fill_parent">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             >
 
             <Button
-                android:id="@+id/shutterButton"
+                android:id="@+id/takePictureButton"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:text="Take photo"
+                android:text="Take a photo"
                 android:layout_weight="0.2"/>
 
             <Button
-                android:id="@+id/focusButton"
+                android:id="@+id/importFileButton"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/cameraframe"
-                android:layout_toEndOf="@+id/shutterButton"
-                android:text="Focus"
-                android:layout_weight="0.2"/>
-
-            <Button
-                android:id="@+id/backButton"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/cameraframe"
-                android:layout_toEndOf="@+id/focusButton"
-                android:text="Back"
+                android:text="Import a file"
                 android:layout_weight="0.2"/>
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            >
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <SurfaceView
-                android:id="@+id/cameraframe"
+            <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_gravity="center"/>
+                android:id="@+id/imagePreview"/>
 
             <com.example.cyrille.mobop_ex2.FocusBoxView
                 android:layout_width="fill_parent"
@@ -75,6 +58,21 @@
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="center"/>
         </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Scan Text"
+                android:id="@+id/scanTextButton"
+                android:layout_weight="0.2"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

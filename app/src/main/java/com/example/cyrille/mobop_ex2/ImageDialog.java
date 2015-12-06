@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import engenoid.tessocrtest.R;
-
 /**
  * Created by cyrille on 04.12.15.
  */
@@ -47,17 +45,18 @@ public class ImageDialog extends DialogFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-        View view = inflater.inflate(R.layout.image_dialog, null);
+//        View view = inflater.inflate(R.layout.image_dialog, null);
+//
+//        ImageView imageView = (ImageView) view.findViewById(R.id.image_dialog_imageView);
+//        TextView textView = (TextView) view.findViewById(R.id.image_dialog_textView);
+//
+//        if (bmp != null)
+//            imageView.setImageBitmap(bmp);
+//
+//        if (title != null)
+//            textView.setText(this.title);
 
-        ImageView imageView = (ImageView) view.findViewById(R.id.image_dialog_imageView);
-        TextView textView = (TextView) view.findViewById(R.id.image_dialog_textView);
-
-        if (bmp != null)
-            imageView.setImageBitmap(bmp);
-
-        if (title != null)
-            textView.setText(this.title);
-
+        View view = inflater.inflate(R.layout.activity_main, null);
         return view;
         }
 
