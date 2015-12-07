@@ -33,7 +33,7 @@ public class TessEngine
         String path = TessDataManager.getTesseractFolder();
         Log.d(TAG, "Tess folder: " + path);
         tessBaseAPI.setDebug(true);
-        tessBaseAPI.init(path, "eng_traineddata");
+        tessBaseAPI.init(path, "eng");
         tessBaseAPI.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, "1234567890");
         tessBaseAPI.setVariable(TessBaseAPI.VAR_CHAR_BLACKLIST, "!@#$%^&*()_+=-qwertyuiop[]} { POIU " + "YTREWQasdASDfghFGHjklJKLl;L:'\"\\|~`xcvXCVbnmBNM,./<>?");
         tessBaseAPI.setPageSegMode(TessBaseAPI.OEM_TESSERACT_CUBE_COMBINED);

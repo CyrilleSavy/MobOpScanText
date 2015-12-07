@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -17,19 +18,20 @@ import java.io.IOException;
 
 public class MainActivity extends Activity implements View.OnClickListener
     {
-    static final String TAG = "DBG_" + MainActivity.class.getName();
+    private static final String TAG = "DBG_" + MainActivity.class.getName();
 
     //attributes for the activity_main layout
-    Button takePictureButton;
-    Button importFileButton;
-    Button scanTextButton;
-    ImageView imagePreview;
-    FocusBoxView focusBox;
+    private Button takePictureButton;
+    private Button importFileButton;
+    private Button scanTextButton;
+    private ImageView imagePreview;
+    private FocusBoxView focusBox;
 
-    Uri imageUri;
-    Bitmap imageBmp;
-    Bitmap imageCropped;
-    Boolean imageFromCamera = false;
+    //static otherwise deleted on screen rotation
+    private static Uri imageUri;
+    private static Bitmap imageBmp;
+    private static Bitmap imageCropped;
+    private static Boolean imageFromCamera = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,6 +59,10 @@ public class MainActivity extends Activity implements View.OnClickListener
         importFileButton.setOnClickListener(this);
         scanTextButton.setOnClickListener(this);
 
+        if (imageBmp != null)
+            {
+            imagePreview.setImageBitmap(imageBmp);
+            }
         }
 
     @Override
@@ -101,7 +107,8 @@ public class MainActivity extends Activity implements View.OnClickListener
             //TODO : check if there is a picture ...
             //TODO : intent to launch the ScanTextActivity
             imageCropped = Tools.getFocusedBitmap(imageBmp, (View) imagePreview, focusBox.getBox());
-            imagePreview.setImageBitmap(imageCropped);//TODO : to remove
+            //imagePreview.setImageBitmap(imageCropped);//TODO : to remove
+            new TessAsyncEngine().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, this, imageCropped);
             }
         }
 

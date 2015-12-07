@@ -4,11 +4,12 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by cyrille on 04.12.15.
  */
-public class TessAsyncEngine extends AsyncTask<Object, Void, String>
+public class TessAsyncEngine extends AsyncTask<Object, String, String>
     {
     static final String TAG = "DBG_" + TessAsyncEngine.class.getName();
 
@@ -64,6 +65,8 @@ public class TessAsyncEngine extends AsyncTask<Object, Void, String>
 
             Log.d(TAG, result);
 
+            publishProgress(result);
+
             return result;
             } catch (Exception ex)
             {
@@ -74,15 +77,25 @@ public class TessAsyncEngine extends AsyncTask<Object, Void, String>
         }
 
     @Override
+    protected void onProgressUpdate(String... values)
+        {
+        super.onProgressUpdate(values);
+        if (values[0] != null)
+            {
+            Toast.makeText(context, values[0], Toast.LENGTH_LONG).show();
+            }
+        }
+
+    @Override
     protected void onPostExecute(String s)
         {
         if (s == null || bmp == null || context == null)
             return;
 
-        ImageDialog.New()
-                .addBitmap(bmp)
-                .addTitle(s)
-                .show(context.getFragmentManager(), TAG);
+//        ImageDialog.New()
+//                .addBitmap(bmp)
+//                .addTitle(s)
+//                .show(context.getFragmentManager(), TAG);
 
         super.onPostExecute(s);
         }

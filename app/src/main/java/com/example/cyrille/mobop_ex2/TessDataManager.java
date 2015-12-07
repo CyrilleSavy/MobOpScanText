@@ -19,7 +19,9 @@ public class TessDataManager
 
     private static final String tessdir = "tesseract";
     private static final String subdir = "tessdata";
-    private static final String filename = "raw/eng_traineddata";
+    //    private static final String tessdir = "res";
+    //private static final String subdir2 = "raw";
+    private static final String filename = "eng.traineddata";
 
     private static String trainedDataPath;
 
@@ -88,7 +90,7 @@ public class TessDataManager
         try
             {
             InputStream fileInputStream = context.getResources()
-                    .openRawResource(R.raw.eng_traineddata);
+                    .openRawResource(R.raw.eng);
 
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
