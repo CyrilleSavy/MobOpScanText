@@ -1,6 +1,6 @@
 <!-- <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/fragment"
-    android:name="com.example.cyrille.mobop_ex2.MainActivityFragment"
+    android:name="snapTextMainActivityFragment"
     tools:layout="@layout/fragment_main" android:layout_width="match_parent"
     android:layout_height="match_parent" /> -->
 
@@ -50,7 +50,7 @@
                 android:layout_height="fill_parent"
                 android:id="@+id/imagePreview"/>
 
-            <com.example.cyrille.mobop_ex2.FocusBoxView
+            <com.example.cyrille.snapText.FocusBoxView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:id="@+id/focusBox"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
-    package="com.example.cyrille.mobop_ex2"
+    package="com.example.cyrille.snapText"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -15,13 +15,22 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.cyrille.snapText.MainActivity"
             android:configChanges="orientation|screenSize|layoutDirection"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.cyrille.snapText.EditTextActivity"
+            android:label="@string/title_activity_edit_text"
+            android:parentActivityName="com.example.cyrille.snapText.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.cyrille.snapText.MainActivity"/>
         </activity>
     </application>
 
