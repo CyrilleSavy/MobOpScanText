@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity
                 takePicture();
                 return true;
             case R.id.action_scantext:
+                //TODO : add image preprocessing to improve conversion
                 scanText();
                 return true;
             case R.id.action_importimage:
@@ -165,7 +166,7 @@ public class MainActivity extends AppCompatActivity
 
     private void scanText()
         {
-        //TODO : check if there is a picture ...
+        //check if there is a picture ...
         if (imageBmp == null)
             {
             Toast.makeText(this.getApplicationContext(), "No image... Import one or take a picture", Toast.LENGTH_SHORT).show();
@@ -197,7 +198,7 @@ public class MainActivity extends AppCompatActivity
 
     private void importImage()
         {
-        //TODO : import an image an put it in "imageBmp" and show in "imagePreview"
+        //import an image an put it in "imageBmp" and show in "imagePreview"
         // select a file
         Intent intent = new Intent();
         intent.setType("image/*");

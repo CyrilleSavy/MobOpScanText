@@ -25,7 +25,8 @@
             android:layout_alignParentEnd="true"
             android:layout_weight="1"
             android:editable="true"
-            android:layout_gravity="left|top"/>
+            android:layout_gravity="left|top"
+            android:gravity="left|top"/>
 
         <LinearLayout
             android:orientation="horizontal"
