@@ -1,6 +1,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".MainActivity">
+    <item
+        android:id="@+id/action_scantext"
+        android:icon="@mipmap/ic_spellcheck"
+        android:title="@string/action_scantext"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_importimage"
+        android:icon="@mipmap/ic_collections"
+        android:title="@string/action_importimage"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_takephoto"
+        android:icon="@mipmap/ic_add_photo"
+        android:title="@string/action_takephoto"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@mipmap/ic_settings"
+        android:title="@string/action_settings"
+        app:showAsAction="always"/>
+
 </menu>

@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.cyrille.snapText.EditTextActivity">
+    tools:context="com.example.cyrille.scanText.EditTextActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -24,7 +24,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_weight="1"
-            android:editable="true"/>
+            android:editable="true"
+            android:layout_gravity="left|top"/>
 
         <LinearLayout
             android:orientation="horizontal"

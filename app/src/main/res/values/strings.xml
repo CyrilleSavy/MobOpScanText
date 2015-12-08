@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">snapText</string>
+    <string name="app_name">ScanText</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_edit_text">Edit converted text</string>
+    <string name="action_takephoto">Take a photo</string>
+    <string name="action_importimage">Import an image</string>
+    <string name="action_scantext">Scan text</string>
+    <string name="action_copy">Copy</string>
+    <string name="action_save">Save</string>
+    <string name="title_activity_edit_text">Edit scanned text</string>
 </resources>
