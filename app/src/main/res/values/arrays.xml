@@ -1,16 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="entries_list_preference">
-        <item>Big Buck Bunny</item>
-        <item>Elephants Dream</item>
-        <item>Sintel</item>
-        <item>Tears of Steel</item>
+    <string-array name="entries_language_preference">
+        <item>English</item>
+        <item>French</item>
     </string-array>
 
-    <string-array name="entryvalues_list_preference">
-        <item>http://archive.org/download/BigBuckBunny_328/BigBuckBunny_512kb.mp4</item>
-        <item>http://archive.org/download/ElephantsDream_277/elephant_dreams_640_512kb.mp4</item>
-        <item>http://archive.org/download/Sintel/sintel-2048-stereo_512kb.mp4</item>
-        <item>http://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4</item>
+    <string-array name="entryvalues_language_preference">
+        <item>eng</item>
+        <item>fra</item>
+    </string-array>
+
+    <string name="entryvalues_language_default">eng</string>
+
+    <string-array name="entries_charsets_preference">
+        <item>Numbers</item>
+        <item>Lower case</item>
+        <item>Upper case</item>
+        <item>Space</item>
+        <item>Punctuation</item>
+        <item>Math symbols</item>
+        <item>Special symbols</item>
+        <item>Brackets</item>
+    </string-array>
+
+    <string-array name="entryvalues_charsets_preference">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+
+    <string-array name="entryvalues_charsets_default">
+        <item>1</item>
+    </string-array>
+
+    <string-array name="charsets_values">
+        <item>123456789</item>
+        <item>abcdefghijklmnopqrstuvwxyz</item>
+        <item>ABCDEFGHIJKLMNOPQRSTUVWXYZ</item>
+        <item> </item>
+        <item>.,:;</item>
+        <item>+-*/=</item>
+        <item>"@#$%^_\|~`&amp;&lt;>'\""</item>
+        <item></item>
     </string-array>
 </resources>

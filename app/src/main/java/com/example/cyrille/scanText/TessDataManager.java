@@ -19,9 +19,8 @@ public class TessDataManager
 
     private static final String tessdir = "tesseract";
     private static final String subdir = "tessdata";
-    //    private static final String tessdir = "res";
-    //private static final String subdir2 = "raw";
     private static final String filename = "eng.traineddata";
+    private static final String fileext = ".traineddata";
 
     private static String trainedDataPath;
 
@@ -39,7 +38,7 @@ public class TessDataManager
 
     private static boolean initiated;
 
-    public static void initTessTrainedData(Context context)
+    public static void initTessTrainedData(Context context, String language)
         {
         if (initiated)
             return;
@@ -54,7 +53,7 @@ public class TessDataManager
         if (!subfolder.exists())
             subfolder.mkdir();
 
-        File file = new File(subfolder, filename);
+        File file = new File(subfolder, language + fileext);
         trainedDataPath = file.getAbsolutePath();
         Log.d(TAG, "Trained data filepath: " + trainedDataPath);
 
@@ -63,7 +62,7 @@ public class TessDataManager
             try
                 {
                 FileOutputStream fileOutputStream;
-                byte[] bytes = readRawTrainingData(context);
+                byte[] bytes = readRawTrainingData(context, language);
                 if (bytes == null)
                     return;
                 fileOutputStream = new FileOutputStream(file);
@@ -85,12 +84,13 @@ public class TessDataManager
             }
         }
 
-    private static byte[] readRawTrainingData(Context context)
+    private static byte[] readRawTrainingData(Context context, String language)
         {
         try
             {
-            InputStream fileInputStream = context.getResources()
-                    .openRawResource(R.raw.eng);
+            InputStream fileInputStream = context.getResources().openRawResource(
+                    context.getResources().getIdentifier(language,
+                            "raw", context.getPackageName()));
 
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
 

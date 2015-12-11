@@ -44,7 +44,7 @@ public class FocusBoxView extends View
         this.setOnTouchListener(getTouchListener());
         }
 
-    private Rect box;
+    private static Rect box;
 
     private static Point ScrRes;
 

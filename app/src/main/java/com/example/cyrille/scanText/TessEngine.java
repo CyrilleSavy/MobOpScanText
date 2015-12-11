@@ -6,6 +6,8 @@ import android.util.Log;
 
 import com.googlecode.tesseract.android.TessBaseAPI;
 
+import java.util.Set;
+
 /**
  * Created by cyrille on 04.12.15.
  */
@@ -22,34 +24,60 @@ public class TessEngine
     private static final String specials = "@#$%^&_<>\"\\|~'`";
     private static final String brackets = "()[]{}";
 
-    private Context context;
+    private static final String[] allCharsets =
 
-    private TessEngine(Context context)
+            {
+                    numbers, lowercase, uppercase, space, punctuation, maths, specials, brackets
+            };
+
+    private Context context;
+    private String language;
+
+    private String whitelist;
+    private String blacklist;
+
+    private TessEngine(Context context, String language, Set<String> charsets)
         {
         this.context = context;
+        this.language = language;
+
+        StringBuilder stringBuilderWhite = new StringBuilder();
+        StringBuilder stringBuilderBlack = new StringBuilder();
+        for (Integer i = 1; i <= allCharsets.length; i++)
+            {
+            if (charsets.contains(i.toString()))
+                {
+                stringBuilderWhite.append(allCharsets[i - 1]);
+                }
+            else
+                {
+                stringBuilderBlack.append(allCharsets[i - 1]);
+                }
+            }
+        whitelist = stringBuilderWhite.toString();
+        blacklist = stringBuilderBlack.toString();
         }
 
-    public static TessEngine Generate(Context context)
+    public static TessEngine Generate(Context context, String language, Set<String> charsets)
         {
-        return new TessEngine(context);
+        return new TessEngine(context, language, charsets);
         }
 
     public String detectText(Bitmap bitmap)
         {
         Log.d(TAG, "Initialization of TessBaseApi");
-        TessDataManager.initTessTrainedData(context);
+        TessDataManager.initTessTrainedData(context, language);
         TessBaseAPI tessBaseAPI = new TessBaseAPI();
         String path = TessDataManager.getTesseractFolder();
         Log.d(TAG, "Tess folder: " + path);
         tessBaseAPI.setDebug(true);
-        tessBaseAPI.init(path, "eng");
-//        tessBaseAPI.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, "1234567890");
-//        tessBaseAPI.setVariable(TessBaseAPI.VAR_CHAR_BLACKLIST, "!@#$%^&*()_+=-qwertyuiop[]} { POIU " + "YTREWQasdASDfghFGHjklJKLl;L:'\"\\|~`xcvXCVbnmBNM,./<>?");
-        tessBaseAPI.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, numbers + punctuation);
-        tessBaseAPI.setVariable(TessBaseAPI.VAR_CHAR_BLACKLIST, lowercase + uppercase + maths + space + brackets + specials);
+        tessBaseAPI.init(path, language);
+        tessBaseAPI.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, whitelist);
+        tessBaseAPI.setVariable(TessBaseAPI.VAR_CHAR_BLACKLIST, blacklist);
         tessBaseAPI.setPageSegMode(TessBaseAPI.OEM_TESSERACT_CUBE_COMBINED);
         Log.d(TAG, "Ended initialization of TessEngine");
         Log.d(TAG, "Running inspection on bitmap");
+        //TODO : add image preprocessing to improve conversion
         tessBaseAPI.setImage(bitmap);
         String inspection = tessBaseAPI.getUTF8Text();
         Log.d(TAG, "Got data: " + inspection);

@@ -1,12 +1,14 @@
 package com.example.cyrille.scanText;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity
@@ -36,7 +39,8 @@ public class MainActivity extends AppCompatActivity
     private static Boolean imageFromCamera = false;
 
     private String textResult;
-    public final static String EXTRA_MESSAGE = "com.example.cyrille.snapText.MESSAGE";
+    public final static String EXTRA_MESSAGE = "com.example.cyrille.scanText.MESSAGE";
+    public final static String EXTRA_IMAGE = "com.example.cyrille.scanText.IMAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,6 +49,40 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         Log.d(TAG, "setContentView OK");
+        }
+
+    static public boolean isImageFromCamera()
+        {
+        return imageFromCamera;
+        }
+
+    static public Bitmap getImage()
+        {
+        return imageBmp;
+        }
+
+    public String getLanguage()
+        {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String s = sharedPrefs.getString("language_preference", null);
+        if (s == null)
+            {
+            PreferenceManager.setDefaultValues(getApplicationContext(),
+                    R.xml.advanced_preferences, false);
+            }
+        return sharedPrefs.getString("language_preference", null);
+        }
+
+    public Set<String> getCharsets()
+        {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Set<String> s = sharedPrefs.getStringSet("charsets_preference", null);
+        if (s == null)
+            {
+            PreferenceManager.setDefaultValues(getApplicationContext(),
+                    R.xml.advanced_preferences, false);
+            }
+        return sharedPrefs.getStringSet("charsets_preference", null);
         }
 
     @Override
@@ -67,13 +105,12 @@ public class MainActivity extends AppCompatActivity
         switch (item.getItemId())
             {
             case R.id.action_settings:
-                //newGame();
+                startSettings();
                 return true;
             case R.id.action_takephoto:
                 takePicture();
                 return true;
             case R.id.action_scantext:
-                //TODO : add image preprocessing to improve conversion
                 scanText();
                 return true;
             case R.id.action_importimage:
@@ -177,12 +214,13 @@ public class MainActivity extends AppCompatActivity
             imageCropped = Tools.getFocusedBitmap(imageBmp, (View) imagePreview, focusBox.getBox());
             try
                 {
-                textResult = new TessAsyncEngine().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, this, imageCropped).get();
+                textResult = new TessAsyncEngine().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, this, imageCropped, getLanguage(), getCharsets()).get();
                 //launch the activity that shows the converted text and allows to modify it
                 //intent to launch the EditTextActivity
                 Intent intent = new Intent(this, EditTextActivity.class);
                 // Send the converted text as an input to the EditTextActivity
                 intent.putExtra(EXTRA_MESSAGE, textResult);
+                intent.putExtra(EXTRA_IMAGE, imageCropped);
                 startActivity(intent);
                 } catch (InterruptedException e)
                 {
@@ -204,5 +242,12 @@ public class MainActivity extends AppCompatActivity
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
+        }
+
+    private void startSettings()
+        {
+        //start the the settings activity
+        Intent intent = new Intent(this, MainPreferencesActivity.class);
+        startActivity(intent);
         }
     }
