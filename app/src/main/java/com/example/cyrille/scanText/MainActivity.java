@@ -24,6 +24,9 @@ import java.io.IOException;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Created by Cyrille on 12/11/2015.
+ */
 public class MainActivity extends AppCompatActivity
     {
     private static final String TAG = "DBG_" + MainActivity.class.getName();
@@ -40,7 +43,6 @@ public class MainActivity extends AppCompatActivity
 
     private String textResult;
     public final static String EXTRA_MESSAGE = "com.example.cyrille.scanText.MESSAGE";
-    public final static String EXTRA_IMAGE = "com.example.cyrille.scanText.IMAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -59,6 +61,11 @@ public class MainActivity extends AppCompatActivity
     static public Bitmap getImage()
         {
         return imageBmp;
+        }
+
+    static public Bitmap getImageCropped()
+        {
+        return imageCropped;
         }
 
     public String getLanguage()
@@ -220,7 +227,6 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = new Intent(this, EditTextActivity.class);
                 // Send the converted text as an input to the EditTextActivity
                 intent.putExtra(EXTRA_MESSAGE, textResult);
-                intent.putExtra(EXTRA_IMAGE, imageCropped);
                 startActivity(intent);
                 } catch (InterruptedException e)
                 {

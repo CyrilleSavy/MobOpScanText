@@ -7,7 +7,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageView;
 
+/**
+ * Created by Cyrille on 12/11/2015.
+ */
 public class EditTextActivity extends AppCompatActivity
     {
 
@@ -25,6 +29,9 @@ public class EditTextActivity extends AppCompatActivity
         EditText textView = (EditText) findViewById(R.id.convertedText);
         textView.setTextSize(25);
         textView.setText(message);
+
+        ImageView image = (ImageView) findViewById(R.id.imageViewTest);
+        image.setImageBitmap(MainActivity.getImageCropped());
         }
 
     @Override
