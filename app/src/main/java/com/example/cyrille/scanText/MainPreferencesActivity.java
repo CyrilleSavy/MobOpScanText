@@ -12,6 +12,11 @@ import java.util.Set;
  */
 public class MainPreferencesActivity extends PreferenceActivity
     {
+
+    //TODO : add the navigation toolbar
+    //TODO : manage the MultiselectListPreference to show the user that its not possible to uncheck all options
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
         {
