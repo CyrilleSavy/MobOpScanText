@@ -150,7 +150,7 @@ public class Tools
 
     public static Bitmap getFocusedBitmap(Context context, View view, Camera camera, byte[] data, Rect box)
         {
-        Point CamRes = FocusBoxUtils.getCameraResolution(context, camera);
+        Point CamRes = CameraUtils.getCameraResolution(context, camera);
         Bitmap bmpIn = Tools.decodeByteArray(data, CamRes.x, CamRes.y, Tools.ScalingLogic.CROP);
 
         int VW = view.getWidth();
