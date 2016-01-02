@@ -28,29 +28,9 @@
             android:layout_gravity="left|top"
             android:gravity="left|top"/>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Copy to clipboard"
-                android:id="@+id/copyButton"
-                android:layout_weight="0.2"/>
-
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Save"
-                android:id="@+id/saveButton"
-                android:layout_weight="0.2"/>
-        </LinearLayout>
-
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:id="@+id/imageViewTest"/>
 
     </LinearLayout>

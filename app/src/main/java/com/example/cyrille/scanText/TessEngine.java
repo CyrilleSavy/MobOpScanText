@@ -18,16 +18,17 @@ public class TessEngine
     private static final String numbers = "1234567890";
     private static final String lowercase = "abcdefghijklmnopqrstuvwxyz";
     private static final String uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String accentuated = "àäéèöüêâôû";
     private static final String space = " ";
     private static final String punctuation = ".,;:!?";
     private static final String maths = "+-*/=";
-    private static final String specials = "@#$%^&_<>\"\\|~'`";
+    private static final String specials = "@#$%^&_<>\"\\|~'`“”‘’";
     private static final String brackets = "()[]{}";
 
     private static final String[] allCharsets =
 
             {
-                    numbers, lowercase, uppercase, space, punctuation, maths, specials, brackets
+                    numbers, lowercase, uppercase, accentuated, space, punctuation, maths, specials, brackets
             };
 
     private Context context;

@@ -1,5 +1,8 @@
 package com.example.cyrille.scanText;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,12 +11,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * Created by Cyrille on 12/11/2015.
  */
 public class EditTextActivity extends AppCompatActivity
     {
+
+    private EditText textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -26,7 +32,7 @@ public class EditTextActivity extends AppCompatActivity
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         // Create the text view
-        EditText textView = (EditText) findViewById(R.id.convertedText);
+        textView = (EditText) findViewById(R.id.convertedText);
         textView.setTextSize(25);
         textView.setText(message);
 
@@ -49,7 +55,11 @@ public class EditTextActivity extends AppCompatActivity
             {
             case R.id.action_copy:
                 //TODO : copy the text in the clipboard
+                ClipboardManager clipMan = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = android.content.ClipData.newPlainText("WordKeeper", textView.getText());
+                clipMan.setPrimaryClip(clip);
                 //TODO : make a toast indicating the text has been copied in clipboard
+                Toast.makeText(this.getApplicationContext(), "Text copied into clipboard", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.action_save:
                 //TODO : launch the save activity which propose to save text and/or base image

@@ -16,6 +16,7 @@
         <item>Numbers</item>
         <item>Lower case</item>
         <item>Upper case</item>
+        <item>Accentuated</item>
         <item>Space</item>
         <item>Punctuation</item>
         <item>Math symbols</item>
@@ -32,6 +33,7 @@
         <item>6</item>
         <item>7</item>
         <item>8</item>
+        <item>9</item>
     </string-array>
 
     <string-array name="entryvalues_charsets_default">
@@ -42,6 +44,7 @@
         <item>123456789</item>
         <item>abcdefghijklmnopqrstuvwxyz</item>
         <item>ABCDEFGHIJKLMNOPQRSTUVWXYZ</item>
+        <item>àäéèöüêâôû</item>
         <item> </item>
         <item>.,:;</item>
         <item>+-*/=</item>

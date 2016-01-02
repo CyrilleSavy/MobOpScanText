@@ -190,6 +190,7 @@ public class Tools
 
     public static Bitmap getFocusedBitmap(Bitmap bmpIn, View view, Rect box)
         {
+        //TODO : take care of the screen orientation
         int VW = view.getWidth();
         int VH = view.getHeight();
 
