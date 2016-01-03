@@ -42,7 +42,7 @@
 
     <string-array name="charsets_values">
         <item>123456789</item>
-        <item>abcdefghijklmnopqrstuvwxyz</item>
+        <item>abcdefghijklmnopqrstuvwxyzç</item>
         <item>ABCDEFGHIJKLMNOPQRSTUVWXYZ</item>
         <item>àäéèöüêâôû</item>
         <item> </item>

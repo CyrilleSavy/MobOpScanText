@@ -16,7 +16,7 @@ public class TessEngine
     static final String TAG = "DBG_" + TessEngine.class.getName();
 
     private static final String numbers = "1234567890";
-    private static final String lowercase = "abcdefghijklmnopqrstuvwxyz";
+    private static final String lowercase = "abcdefghijklmnopqrstuvwxyzç";
     private static final String uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String accentuated = "àäéèöüêâôû";
     private static final String space = " ";
